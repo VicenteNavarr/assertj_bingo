@@ -141,26 +141,26 @@ public class Bingo {
     static void rellenarNumerosCarton(int[][] arrayBi)
     {
         // Selecciono cada una de las 8 columnas
-                    for (int i = 0; i < arrayBi.length; i++)
+        for (int i = 0; i < arrayBi.length; i++)
+        {
+            // Recorro las 3 posiciones de cada columna
+            for (int j = 0; j < arrayBi[0].length; j++)
+            {
+                if(i == 0) // Caso columna 0 (1-9)
+                {
+                    boolean esta = true;
+                    do
                     {
-                        // Recorro las 3 posiciones de cada columna
-                        for (int j = 0; j < arrayBi[0].length; j++)
+                        int aleatorio = (int)(Math.random()*9+1);
+
+                        esta = buscarValorRepetido(arrayBi[i], aleatorio);
+
+                        if(!esta)
                         {
-                            if(i == 0) // Caso columna 0 (1-9)
-                            {
-                                boolean esta = true;
-                                do
-                                {
-                                    int aleatorio = (int)(Math.random()*9+1);
+                            arrayBi[i][j] = aleatorio;
+                        }
 
-                                    esta = buscarValorRepetido(arrayBi[i], aleatorio);
-
-                                    if(!esta)
-                                    {
-                                        arrayBi[i][j] = aleatorio;
-                                    }
-
-                                }while(esta); // Bucle que comprueba si existe ese valor en el array para generar otro random
+                    }while(esta); // Bucle que comprueba si existe ese valor en el array para generar otro random
 
                 }
                 else // Resto de columnas: Random 0-9*(columna*10)
