@@ -7,7 +7,7 @@ import org.testng.asserts.Assertion;
 
 public class BingoTest {
 
-
+@Test
 
 
 
