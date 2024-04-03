@@ -72,7 +72,7 @@ public class BingoTest {
             }
             //Comprobamos blancos en columna
             assertThat(contBc).isLessThan(3);
-
+//
 
         }
         //Comprobamos blancos en cartón
