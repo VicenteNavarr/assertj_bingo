@@ -18,69 +18,6 @@ public class BingoTest {
     }
 
 
-    @Test
-    void testVerificacionNoVacio() {
-
-        //when
-        int[] col0 = new int[3];
-        int[] col1 = new int[3];
-        int[] col2 = new int[3];
-        int[] col3 = new int[3];
-        int[] col4 = new int[3];
-        int[] col5 = new int[3];
-        int[] col6 = new int[3];
-        int[] col7 = new int[3];
-        int[] col8 = new int[3];
-        int[][] carton = {col0, col1, col2, col3, col4, col5, col6, col7, col8};
-
-
-        //Then
-
-        //verificamos que se ha rellenado el array correctamente
-
-        for (int i = 0; i < carton.length; i++) {
-            // Si estamos en la primera columna, generamos un nuevo número aleatorio
-            int aleatorio = (int) (Math.random() * 9 + 1);
-
-            // Recorremos las 3 posiciones de cada columna
-            for (int j = 0; j < carton[i].length; j++) {
-                // Asignamos el número aleatorio solo si estamos en la primera columna
-                if (i == 0) {
-                    carton[i][j] = aleatorio;
-                }
-
-
-                assertThat(carton).isNotEmpty();
-            }
-        }
-    }
-
-
-    @Test
-    void testVerificacionNumeroFilas() {
-        //when
-        int[] col0 = new int[3];
-        int[] col1 = new int[3];
-        int[] col2 = new int[3];
-        int[] col3 = new int[3];
-        int[] col4 = new int[3];
-        int[] col5 = new int[3];
-        int[] col6 = new int[3];
-        int[] col7 = new int[3];
-        int[] col8 = new int[3];
-        int[][] carton = {col0, col1, col2, col3, col4, col5, col6, col7, col8};
-
-
-        //Then
-
-
-        for (int i = 0; i < carton.length; i++) {
-            // Verificamos filas
-            assertThat(carton[i].length).isEqualTo(3);
-
-
-        }
-    }
 
 
     @Test
@@ -259,7 +196,7 @@ public class BingoTest {
         boolean resultado = Bingo.buscarColumna(carton, posicionAleatoria);
 
         //Then
-        boolean esta2Veces = false;
+
         int contador = 0;
 
         for (int i = 0; i < carton[0].length; i++) // Recorre las 3 posiciones del array
@@ -290,12 +227,12 @@ public class BingoTest {
         //when
 
 
-        //declaro:
+
         int [] fila= new int [9];
         int elemento=(int)(Math.random()*99+1);
 
 
-        //When
+        //do
         boolean resultado = Bingo.buscarValorRepetido(fila, elemento);
 
 
@@ -316,13 +253,87 @@ public class BingoTest {
             }
         }
 
-
-
-
-
     }
 
 
+    @Test
+    void pintarCartonTest1() {
+        //Aquí vamos a comprobar que no pinta sin aciertos
+
+        //When
+        int[][] carton = {{1, 2, 3, 4, 5, 6, 7, 8}, {9, 10, 11, 12, 13, 14, 15, 16}, {17, 18, 19, 20, 21, 22, 23, 24}};
+        int[] arrayBolas = {50,60};
+
+
+        //Do
+        int aciertos = Bingo.pintarCarton(carton, arrayBolas);
+
+        //Then
+
+
+        assertThat(aciertos).isEqualTo(0); // No debería haber aciertos
+
+
+    }
+        @Test
+        void pintarCartonTest2() {
+            //Aquí vamos a comprobar que pinta si hay aciertos -- numero encontrado
+
+            //When
+            int[][] carton = {{1, 2, 3, 4, 5, 6, 7, 8}, {9, 10, 11, 12, 13, 14, 15, 16}, {17, 18, 19, 20, 21, 22, 23, 24}};
+            int[] arrayBolas = {1, 5, 10, 15, 6};
+
+
+            //Do
+            int aciertos = Bingo.pintarCarton(carton, arrayBolas);
+
+            //Then
+
+
+            // Verificamos que el número de aciertos sea  correcto -- > en este caso 5
+            assertThat(aciertos).isEqualTo(5);
+            //assertThat(aciertos).isEqualTo(4);
+
+        }
+
+
+    @Test
+    void insertarAlFinalTest1() {
+
+        //When
+        int []array= new int[9];
+        int elemento =1;
+
+        //Do
+        int [] nuevo = Bingo.insertarAlFinal(array, elemento);
+
+
+        //Then
+
+        //Primero comprobamos que el nuevo array tiene la dimensión correcta
+        assertThat(nuevo.length).isEqualTo(10);
+
+        //Después comprobamos que el elemento se ha añadido correctamente en la posición esperada
+        assertThat(nuevo[nuevo.length - 1]).isEqualTo(elemento);
+    }
+
+    @Test
+    void ordenarTest1() {
+        //When
+        int []array= {8,9,14,25,1,4,3,65};
+
+
+        //Do
+        int [] nuevo = Bingo.ordenar(array);
+
+
+        //Then
+
+        //Primero comprobamos ordenación creciente
+        assertThat(nuevo).isSorted();
+
+
+    }
 
 
 
