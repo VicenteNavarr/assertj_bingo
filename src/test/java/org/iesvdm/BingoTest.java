@@ -11,7 +11,7 @@ import static org.iesvdm.Bingo.buscarValorRepetido;
 
 public class BingoTest {
 
-
+    @Test
     void test1() {
 
         assertThat(1 == 1).isTrue();
