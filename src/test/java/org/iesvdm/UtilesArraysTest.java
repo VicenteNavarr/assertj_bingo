@@ -1,10 +1,14 @@
 package org.iesvdm;
 
+import org.assertj.core.api.AbstractStringAssert;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.api.Assertions.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
+
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;import static org.junit.jupiter.api.Assertions.*;
@@ -342,9 +346,16 @@ public class UtilesArraysTest {
     @Test
     void imprimirTest1() {
 
+        //Do
+        int[] array = {1, 3, 4, 5};
 
 
+        // When
+        UtilesArrays.imprimir(array);
 
+        //Then
+        //No se me ha ocurrido otra cosa...tabulador
+        assertThat(Arrays.toString(array)).isEqualTo("[1, 3, 4, 5]");
 
     }
 
