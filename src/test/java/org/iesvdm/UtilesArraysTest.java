@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;import static org.junit.jupiter.api.Assertions.*;
 
 
 
@@ -267,11 +268,240 @@ public class UtilesArraysTest {
         //verificamos longitud
         assertThat(nuevoArray).hasSize(array.length-1);
 
-        // Verificamos si los elementos anteriores a la posición se mantienen en el mismo sitio
+        // Verificamos si los elementos anteriores a la posición se mantienen en el mismo sitio se ha eliminado el elemento
+        assertThat(nuevoArray).containsExactly(1,4,5);
+    }
+
+
+    @Test
+    void ordenarTest1() {
+
+
+        // Do
+        int[] array = {1, 4, 3, 5};
+
+
+
+        // When
+        int[] nuevoArray = UtilesArrays.ordenar(array);
+
+        // Then
+
+        //verificamos lordenación
+        assertThat(nuevoArray).isSorted();
+
+
+
+    }
+
+
+    @Test
+    void desordenarTest1() {
+
+
+        // Do
+        int[] array = {1, 4, 3, 5};
+
+
+
+        // When
+        UtilesArrays.desordenar(array);
+
+        // Then
+
+        //verificamos lordenación
+        assertThat(array).containsExactlyInAnyOrder(1, 4, 3, 5);
+
+
+
+    }
+
+
+    @Test
+    void invertirTest1() {
+
+
+        // Do
+        int[] array = {1, 4, 3, 5};
+
+
+
+        // When
+         int [] invertido = UtilesArrays.invertir(array);
+
+        // Then
+
+        //verificamos lordenación
+        assertThat(invertido).containsExactly(5,3,4,1);
+
+
+
+    }
+
+
+    @Test
+    void imprimirTest1() {
+
+
+
+
+
+    }
+
+    @Test
+    void estaOrdenadoTest1() {
+
+        // Do
+        int[] array = {1, 3, 4, 5};
+
+
+
+        // When
+        boolean ordenado = UtilesArrays.estaOrdenado(array);
+
+        // Then
+
+            assertThat(ordenado).isTrue();
+
+        }
+
+
+    @Test
+    void buscarTest1() {
+
+        // Do
+        int[] array = {1, 3, 4, 5};
+        int elemento=3;
+
+
+
+        // When
+        int encontrado = UtilesArrays.buscar(array, elemento);
+
+        // Then
+
+        //verificamos que encuentra en posición
+        assertThat(encontrado).isEqualTo(1);
+    }
+
+
+    @Test
+    void partirPorTest1() {
+
+        // Do
+        int[] array = {1, 3, 4, 5, 6, 7, 8, 9, 10};
+        int posInicio=0;
+        int posCorte=3;
+
+
+
+        // When
+        int[] nuevoArray = UtilesArrays.partirPor(array, posInicio, posCorte);
+
+        // Then
+        //Verificamos tamaño nuevo array
+        assertThat(nuevoArray.length).isEqualTo(posCorte-posInicio);
+
+        // Verificamos control de posiciones correctas:
+        if(posInicio<array.length && posCorte<array.length && posInicio<posCorte) {
+            // Verificamos que llena con las posiciones a partir de la de inicio del array de origen
+            for (int i = 0; i < nuevoArray.length; i++) {
+
+                assertThat(nuevoArray[i]).isEqualTo(array[i + posInicio]);
+            }
+        }else{
+
+            assertThat(nuevoArray).isEqualTo(array);
+
+
+        }
+
+
+    }
+
+    @Test
+    void sonIgualesTest1() { //He corregido el método!! Daba errores
+
+        // Do
+        int[] array = {1, 3, 4, 5};
+        int[] array2 = {1, 3, 4, 5};
+
+
+
+
+        // When
+        boolean iguales = UtilesArrays.sonIguales(array, array2);
+
+        // Then
+
+        //Verificamos longitudes
+        assertThat(array.length).isEqualTo(array2.length);
+
+        //verificamos que son iguales
+        assertThat(iguales).isTrue();
+    }
+
+    @Test
+    void elementosIgualesTest1() { //He corregido el método!! Daba errores
+
+        // Do
+        int[] array = {1, 3, 4, 5};
+        int[] array2 = {1, 3, 4, 5};
+        int posicioAComparar=3;
+
+
+
+
+
+        // When
+        boolean iguales = UtilesArrays.elementosIguales(array, array2, posicioAComparar);
+
+        // Then
+
+        //Verificamos longitudes
+        assertThat(array.length).isEqualTo(array2.length);
+
+        //verificamos que los elementos de las posiciones son iguales
+        assertThat(array[posicioAComparar]).isEqualTo(array2[posicioAComparar]);
+
+
+    }
+
+    @Test
+    void concatenarArraysTest1() { //He corregido el método!! Daba errores
+
+        // Do
+        int[] array = {1, 3, 4, 5};
+        int[] array2 = {1, 3, 4, 5};
+
+
+
+
+
+
+        // When
+        int [] nuevoArray = UtilesArrays.concatenarArrays(array, array2);
+
+        // Then
+
+        //Verificamos que la longitud del nuevo array es la suma de las longitudes de los otros dos
+        assertThat(nuevoArray.length).isEqualTo(array2.length+array.length);
+
+        //Verificamos que el arry se ha creado correctamente
+        assertThat(nuevoArray).containsExactly(1, 3, 4, 5, 1, 3, 4, 5);
 
     }
 
 
 
 
-    }
+
+
+
+
+}
+
+
+
+
+

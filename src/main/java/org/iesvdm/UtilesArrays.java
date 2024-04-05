@@ -377,7 +377,7 @@ public class UtilesArrays {
      */
     static boolean sonIguales(int[] array1, int[] array2)
     {
-        boolean iguales = false;
+        /*boolean iguales = false;
 
         if (array1.length == array2.length) // Comprobamos que los dos arrays tengan la misma longitud
         {
@@ -396,7 +396,27 @@ public class UtilesArrays {
             }
         }
 
+        return iguales;*/
+        boolean iguales = true; // debe inicializar en true
+
+        //Verificamos longitudes
+        if (array1.length == array2.length) {
+            int index = 0;
+            while (index < array1.length && array1[index] == array2[index]) {
+                index++;
+            }
+
+            // Si lo elementos no son iguales...
+            if (index != array1.length) {
+                iguales = false;
+            }
+        //Si las longitudes no coinciden..False
+        } else {
+            iguales = false;
+        }
+
         return iguales;
+
     }
 
     /**
